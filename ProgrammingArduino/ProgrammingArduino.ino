@@ -182,8 +182,9 @@ char const * cmdsScan[]     = {cmd_AT, cmd_REST, cmd_SCAN};
 char const * cmdsDispRAM[]  = {cmd_AT, cmd_REST, cmd_VMLINK};
 char const * cmdsAddRAM[]   = {cmd_AT, cmd_DISCON, cmd_VMLINK, cmd_bld_ADDLINKADD, cmd_bld_ADDLINKNAME, cmd_REST, cmd_VMLINK};
 char const * cmdsClearRAM[] = {cmd_AT, cmd_REST, cmd_DISCON, cmd_DELVMLINK, cmd_REST, cmd_VMLINK};
+char const * cmdsDispSN[] = {cmd_AT, cmd_GMR};
 
-char const * menuOptions[4] = { "\n1=SCAN", "\n2=DISPLAY", "\n3=ADD", "\n4=DELETE ALL" };
+char const * menuOptions[5] = { "\n1=SCAN", "\n2=DISPLAY", "\n3=ADD", "\n4=DELETE ALL", "\n5=SN" };
 
 void setup() {
 
@@ -208,6 +209,7 @@ void loop() {
     Serial.println("   2 - Display stored auto-connect Bluetooth receiver devices");
     Serial.println("   3 - Add one auto-connect Bluetooth receiver device to storage");
     Serial.println("   4 - Delete all auto-connect Bluetooth receiver devices from storage");
+    Serial.println("   5 - Display the software version of the emitter");
     Serial.print("==> ");
   }
 
@@ -216,8 +218,8 @@ void loop() {
 
     menuPrinted = 0;
     myChoice = getSerial_uint8_t();
-    if ((0 == myChoice) || (myChoice > 4)) {
-      Serial.println("ERROR - choice must be 1 through 4");
+    if ((0 == myChoice) || (myChoice > 5)) {
+      Serial.println("ERROR - choice must be 1 through 5");
     } else {
       Serial.println(menuOptions[myChoice-1]);
       processCommand(myChoice);
